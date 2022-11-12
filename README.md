@@ -17,7 +17,7 @@ Running the docker compose command creates four containers:
 
 ```
 $ git clone https://github.com/muhme/wordpress-maildev
-$ cd wordpress+maildev
+$ cd wordpress-maildev
 $ docker compose up -d
 ```
 
