@@ -1,0 +1,50 @@
+# docker-compose.yml - Wordpress in docker with email
+# hlu, Nov 11th 2022
+
+# $ docker compose up -d  
+# $ docker exec -it wp_wordpress /bin/bash
+
+version: '3.5'
+services:
+    wordpress:
+        container_name: wp_wordpress
+        build:
+            context: .
+            dockerfile: wordpress.Dockerfile
+        restart: always
+        environment:
+            - WORDPRESS_DB_PASSWORD=root
+            - WORDPRESS_DB_USER=root
+        ports:
+            - "3080:80"
+        volumes:
+            - ./wp:/var/www/html
+        depends_on:
+            - mysql
+            - maildev
+    mysql:
+        container_name: wp_mariadb
+        image: mariadb
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=wordpress
+    phpmyadmin:
+        container_name: wp_phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        ports:
+            - "3081:80"
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: root
+            PMA_PASSWORD: root
+        depends_on:
+            - mysql
+    maildev:
+        container_name: wp_maildev
+        image: maildev/maildev
+        restart: always
+        ports:
+            - "3082:1080"
+            - "1025:1025"
