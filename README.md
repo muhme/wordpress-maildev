@@ -16,10 +16,12 @@ Running the docker compose command creates four containers:
     * http://localhost:3082
 
 ```
-$ git clone https://github.com/muhme/wordpress+maildev
+$ git clone https://github.com/muhme/wordpress-maildev
 $ cd wordpress+maildev
 $ docker compose up -d
 ```
+
+All four containers are used in the latest version.
 
 ## License
 This project is licensed under the MIT License.
