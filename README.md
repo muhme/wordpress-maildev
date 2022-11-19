@@ -39,7 +39,7 @@ container # echo -e "Subject: Test Mail\r\nTo: you@test.com\r\n\r\nEverything wo
 You can test PHP email configuration with:
 ```
 host $ docker exec -it wp_wordpress /bin/bash
-container # php -r "mail('you@test.com','Test Mail from PHP', 'Working too?', 'From: me@test.com' . '\r\n');"
+container # php -r "mail('you@test.com','Test Mail from PHP', 'Working too?', 'From: me@test.com');"
 ```
 
 ## License
