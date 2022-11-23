@@ -1,6 +1,8 @@
 # WordPress with Email
 
-This is a docker stack for testing WordPress including the ability to check mails. You can check the mails from wordpress with [MailDev](https://github.com/maildev/maildev), an smtp server with web interface. [msmtp](https://marlam.de/msmtp/) is used as simple SMPT client. 
+This is a docker stack for testing WordPress including the ability to check mails. You can check the mails from wordpress with [MailDev](https://github.com/maildev/maildev), an smtp server with web interface. [msmtp](https://marlam.de/msmtp/) is used as simple SMPT client.
+
+A small WordPress plugin sets the sender email address (from field) fixed to 'webmaster@docker.local' and fixes the problem of undeliverable address 'wordpress@localhost' inside Docker container. Installing it as [must-use WordPress plugin](https://wordpress.org/support/article/must-use-plugins) to have it already actived.
 
 ![mails](mails.png)
 
@@ -17,10 +19,10 @@ Running the docker compose command creates four containers:
     * listening on emails as maildev:1025
     * http://localhost:3082 – MailDev web interface
 
-```
-$ git clone https://github.com/muhme/wordpress-maildev
-$ cd wordpress-maildev
-$ docker compose up -d
+```bash
+git clone https://github.com/muhme/wordpress-maildev
+cd wordpress-maildev
+docker compose up -d
 ```
 
 All four containers are used in the latest version.
@@ -28,18 +30,21 @@ All four containers are used in the latest version.
 ![docker](docker.png)
 
 ## Testing
-You can test mails from Wordpress after the initial installation using the "Forgot your password?" feature at http://localhost:3080/wp-login.php.
+You can test mails from WordPress after the initial installation using the "Forgot your password?" feature at http://localhost:3080/wp-login.php.
 
-You can test the used https://marlam.de/msmtp with:
-```
-host $ docker exec -it wp_wordpress /bin/bash
-container # echo -e "Subject: Test Mail\r\nTo: you@test.com\r\n\r\nEverything working?" | msmtp --debug -f me@test.com -- you@test.com
+For the following two tests, you need to go into the Docker container:
+```bash
+docker exec -it wp_wordpress /bin/bash
 ```
 
-You can test PHP email configuration with:
+You can test [msmtp](https://marlam.de/msmtp/) inside container with:
+```bash
+echo -e "Subject: Test Mail\r\nTo: you@test.com\r\n\r\nEverything working?" | msmtp --debug -f me@test.com -- you@test.com
 ```
-host $ docker exec -it wp_wordpress /bin/bash
-container # php -r "mail('you@test.com','Test Mail from PHP', 'Working too?', 'From: me@test.com');"
+
+You can test PHP email configuration inside container with:
+```bash
+php -r "mail('you@test.com','Test Mail from PHP', 'Working too?', 'From: me@test.com');"
 ```
 
 ## License
