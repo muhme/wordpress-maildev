@@ -1,6 +1,6 @@
 # WordPress with Email
 
-This is a docker stack for testing WordPress including the ability to check mails. You can check the mails from wordpress with [MailDev](https://github.com/maildev/maildev), an smtp server with web interface. [msmtp](https://marlam.de/msmtp/) is used as simple SMPT client.
+This is a docker stack for testing WordPress (e.g. as base to [clone a LIVE instance](https://www.consulting.heikol.de/en/blog/wordpress-clone-manually/)) including the ability to check mails. You can check the mails from WordPress with [MailDev](https://github.com/maildev/maildev), a SMTP server with web interface. [msmtp](https://marlam.de/msmtp/) is used as a simple SMPT client.
 
 A small WordPress plugin sets the sender email address (from field) fixed to 'webmaster@docker.local' and fixes the problem of undeliverable address 'wordpress@localhost' inside Docker container. Installing it as [must-use WordPress plugin](https://wordpress.org/support/article/must-use-plugins) to have it already actived.
 
