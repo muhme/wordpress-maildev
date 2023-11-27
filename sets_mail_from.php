@@ -8,4 +8,3 @@
     function( $email ) {
 	    return 'webmaster@docker.local';
     } );
-
