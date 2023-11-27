@@ -13,9 +13,9 @@ Database administration is realised with the well known [phpMyAdmin](https://www
 ## Installation
 
 ```bash
-git clone https://github.com/muhme/wordpress-maildev
-cd wordpress-maildev
-docker compose up -d
+host$ git clone https://github.com/muhme/wordpress-maildev
+host$ cd wordpress-maildev
+host$ docker compose up -d
 ```
 
 Running the docker compose command creates four containers:
