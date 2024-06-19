@@ -13,9 +13,9 @@ Database administration is realised with the well known [phpMyAdmin](https://www
 ## Installation
 
 ```bash
-host$ git clone https://github.com/muhme/wordpress-maildev
-host$ cd wordpress-maildev
-host$ docker compose up -d
+git clone https://github.com/muhme/wordpress-maildev
+cd wordpress-maildev
+docker compose up -d
 ```
 
 Running the docker compose command creates four containers:
@@ -51,6 +51,12 @@ wp_wordpress# echo -e "Subject: Test Mail\r\nTo: you@test.com\r\n\r\nEverything 
 You can test PHP email configuration inside container with:
 ```bash
 wp_wordpress# php -r "mail('you@test.com','Test Mail from PHP', 'Working too?', 'From: me@test.com');"
+```
+
+## Clean-Up
+To stop and remove Docker containers and networks:
+```bash
+docker compose down
 ```
 
 ## License
